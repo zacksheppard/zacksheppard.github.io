@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Building the Sunset Somewhere App - io.zack.io</title>
+  <meta name="author" content="Zack Sheppard">
+
+  
+  <meta name="description" content="Sunset Somewhere is a web app that Matthias Loker, Amy Johnson and I built at The Flatiron School. The idea is to show a big beautiful photo of a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://io.zack.io/blog/2014/08/04/sunset-somewhere-app">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="io.zack.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">io.zack.io</a></h1>
+  
+    <h2>A tailing of error and correction</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:io.zack.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Building the Sunset Somewhere App</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-04T21:05:29-04:00" pubdate data-updated="true">Aug 4<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://sunsetsomewhere.herokuapp.com/">Sunset Somewhere</a> is a web app that <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and I built at <a href="http://flatironschool.com" target="_blank">The Flatiron School</a>. The idea is to show a big beautiful photo of a place where the sun is setting right now. It doesn’t aim to show you a sunset taking place at this moment but instead shows a photo of a place where it is currenlty setting, but which was taken in the past.</p>
+
+<h3>So where is the sun setting?</h3>
+
+<p>We started by finding a way to figure out where the sun sets around the world. Because of the <a href="http://en.wikipedia.org/wiki/Earth's_rotation#Changes_in_rotation">axial tilt of the earth</a> the sunset makes it’s own <a href="http://www.timeanddate.com/worldclock/sunearth.html">constantly moving curve across the planet</a> that doesn&rsquo;t follow a longitude or any other path but it&rsquo;s own. (As we all should.)</p>
+
+<p>There are tools to find out where the sun sets at a specific latitude and longitude but not one to show you all the places it is currently setting. So to get locations, we use a list of the 1000 most populous cities and query the <a href="http://www.wunderground.com/weather/api">Weather Underground API</a> every 4 days to get sunset times in those cities. We used the most populous cities because they would be more likely to have photos.</p>
+
+<p><a href='http://www.timeanddate.com/worldclock/sunearth.html'><img src='https://farm3.staticflickr.com/2905/14645566377_3d48aa75e9_b.jpg'></a></p>
+
+<h3>Finding photos</h3>
+
+<p>We knew we wanted to show big beautiful photos so we chose to use the <a href="http://flickr.com/services/api">Flickr API</a>. Instagram has more photos but they don’t store photos at full size as originally shot or anywhere near the resolution we wanted. The Flickr API has lots of options to let you search for photos including three different ways to search by location, bounding box, <a href="https://developer.yahoo.com/geo/geoplanet/guide/concepts.html">woe-id</a>, or a latitude, longitude, and radius. We went with lat/lon because it was a good match for the city sunset time data which also has a lat/lon.</p>
+
+<p>To search for the photos, we used the <a href="https://www.flickr.com/services/api/flickr.photos.search.html">photos.search</a> method. Flickr has lots of API calls you can make but this is the main search. It has lots of options and can be used in conjunction with other API calls to get even more data if needed. We use the options to do a tag search for ’sunset’, a lat/lon, the maximum allowed radius of 32 kilometers, and a few other options. We were able to get a lot out of the <code>extras</code> field. It will give you the direct photo URL on the server so you don’t have to construct the URL from the other data. When you upload to Flickr they store the photo in a bunch  of sizes and you can choose which one to use.**</p>
+
+<h3>Showing a photo</h3>
+
+<p>All this comes together when you load the page. We</p>
+
+<ol>
+<li>choose place at random from the list of where the sun is setting right now.</li>
+<li>Collect a list of all the #sunset photos from there.</li>
+<li>Show one of those at random to give as much variety as possible.</li>
+</ol>
+
+
+<p>We want to show a large full screen image so we use the 1600 pixel size  (The ‘h’ size as Flickr calls it.) and we only want landscape photos because, well, it’s a landscape. (It also makes the layout much less complicated.) The 1600 pixel image isn’t always available so the the last step is to check for that and that width > height and 1) Show a photo <em><a href="http://sunsetsomewhere.herokuapp.com/">&lsquo;Ooohh&rsquo;</a></em> or 2) Choose another at random <em><a href="http://sunsetsomewhere.herokuapp.com/">&lsquo;Ahhhh&rsquo;</a></em>&hellip;</p>
+
+<p><a href='http://sunsetsomewhere.herokuapp.com/'><img src='https://farm4.staticflickr.com/3837/14809101826_7368f83888_b.jpg' ></a></p>
+
+<p>** <strong>Note:</strong> There are more sizes available than <a href="https://www.flickr.com/services/api/misc.urls.html">the documentation currently shows</a>. You can see they have the n, c, z, etc sizes. These correspond to the sizes on a photo&rsquo;s &lsquo;all sizes&rsquo; page. <a href="https://www.flickr.com/photos/nirjadalal/5982367364/sizes/l">Some photos</a> only have the ones you see on the docs. But a lot of photos that were <a href="https://www.flickr.com/photos/stuckinthemetal/14799254526/sizes/l">uploaded within the last few years</a> have additional sizes. These are ‘h’ at 1600 on the longest side and ‘k’ at 2048 on the longest side. The API docs for the extras field say you can get the URL for some sizes with the notation <code>url_n, url_z, url_c,</code> etc. Even though they don’t mention h &amp; k they are also available. With that we were able to get a 1600px image for the app.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zack Sheppard</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-04T21:05:29-04:00" pubdate data-updated="true">Aug 4<sup>th</sup>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/" data-via="" data-counturl="http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/21/getting-familiar-with-irc/" title="Previous Post: Getting familiar with IRC">&laquo; Getting familiar with IRC</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/08/18/cinch-irc-bot-setup/" title="Next Post: Cinch IRC bot Setup">Cinch IRC bot Setup &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Zack Sheppard -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

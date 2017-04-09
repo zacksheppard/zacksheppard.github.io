@@ -1,100 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>io.zack.io</title>
-  <meta name="author" content="Zack Sheppard">
-
-  
-  <meta name="description" content="I&rsquo;m going to make some changes to a child theme of the WordPress Twenty Sixteen theme. It&rsquo;s currently one of my favorite starting points &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://io.zack.io">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="io.zack.io" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">io.zack.io</a></h1>
-  
-    <h2>A tailing of error and correction</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:io.zack.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[io.zack.io]]></title>
+  <link href="http://io.zack.io/atom.xml" rel="self"/>
+  <link href="http://io.zack.io/"/>
+  <updated>2017-04-09T14:09:45-04:00</updated>
+  <id>http://io.zack.io/</id>
+  <author>
+    <name><![CDATA[Zack Sheppard]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2017-04-07T17:15:40-04:00" pubdate data-updated="true">Apr 7<sup>th</sup>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;m going to make some changes to a child theme of the WordPress <a href="https://theme.wordpress.com/themes/twentysixteen/">Twenty Sixteen theme</a>. It&rsquo;s currently one of my favorite starting points when theming in WordPress. It is simple but not plain, the border and strong headlines have a good modern look, and it doesn&rsquo;t look like everyting else right now so it won&rsquo;t go out of style in a couple years.</p>
+  <entry>
+    <title type="html"><![CDATA[Layout in the WordPress Twenty Sixteen Theme]]></title>
+    <link href="http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/"/>
+    <updated>2017-04-07T17:15:40-04:00</updated>
+    <id>http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m going to make some changes to a child theme of the WordPress <a href="https://theme.wordpress.com/themes/twentysixteen/">Twenty Sixteen theme</a>. It&rsquo;s currently one of my favorite starting points when theming in WordPress. It is simple but not plain, the border and strong headlines have a good modern look, and it doesn&rsquo;t look like everyting else right now so it won&rsquo;t go out of style in a couple years.</p>
 
 <p>Making changes or additions to a WordPress theme is often difficult because there is a lot going on that I don&rsquo;t understand as far as how the elements work together to create the layout. I&rsquo;m going to do what I should probably have been doing in the past, take a couple hours to really understand all the elements, what they are doing and how they work together so working with the theme is less of a fight.</p>
 
@@ -200,42 +124,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 
 
 <p>After doing this explication of the layout, creating the testimonials shortcode was much easier than other changes I&rsquo;ve made. It&rsquo;s epecially handy since this particular theme has things lining up in weird ways so it&rsquo;s hard to tell how they work together. The above notes will also be useful for my next changes.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-06-18T17:11:41-04:00" pubdate data-updated="true">Jun 18<sup>th</sup>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We will be working with a Mac running MAMP and a Dreamhost account running a 1-click install of WordPress.</p>
+  <entry>
+    <title type="html"><![CDATA[Setting Up Local Development on a WordPress Blog at Dreamhost]]></title>
+    <link href="http://io.zack.io/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/"/>
+    <updated>2016-06-18T17:11:41-04:00</updated>
+    <id>http://io.zack.io/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost</id>
+    <content type="html"><![CDATA[<p>We will be working with a Mac running MAMP and a Dreamhost account running a 1-click install of WordPress.</p>
 
 <h2>Basic Overview</h2>
 
@@ -400,42 +297,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <p>If you&rsquo;re unsure of the MySQL password it can be a pain to change. Instead of giving instructions here, check out the current MAMP docs.</p>
 
 <p>After the config change is made you&rsquo;re site should now be live at <a href="http://localhost/mysite">http://localhost/mysite</a></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-06-07T13:38:18-04:00" pubdate data-updated="true">Jun 7<sup>th</sup>, 2015</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This is a quick tutorial about saving user data in the Hubot Redis brain using the Slack adapter.</p>
+  <entry>
+    <title type="html"><![CDATA[Saving User Data in the Hubot Redis Brain]]></title>
+    <link href="http://io.zack.io/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/"/>
+    <updated>2015-06-07T13:38:18-04:00</updated>
+    <id>http://io.zack.io/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain</id>
+    <content type="html"><![CDATA[<p>This is a quick tutorial about saving user data in the Hubot Redis brain using the Slack adapter.</p>
 
 <p>There is documentation out there about the <a href="https://github.com/hubot-scripts/hubot-redis-brain">hubot-redis-brain</a>, about <a href="http://redis.io/commands">redis commands</a>, and the <a href="https://github.com/slackhq/hubot-slack">Hubot slack adapter</a>, but very little mention of how to use them all together.</p>
 
@@ -555,42 +425,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <li><a href="https://github.com/github/hubot/blob/39681ea35de6375154748418e11f533ef51c3340/src/adapter.coffee">Hubot adapter.coffee</a></li>
 </ul>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-05-26T07:43:56-04:00" pubdate data-updated="true">May 26<sup>th</sup>, 2015</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>About a week ago, I went to the <a href="http://www.cooperhewitt.org/">Cooper Hewitt</a> to try the experience of visiting with their new <a href="http://www.cooperhewitt.org/2015/03/05/using-the-pen/">Pen</a>, designed in house by their technology team.</p>
+  <entry>
+    <title type="html"><![CDATA[Thoughts on the Cooper Hewitt Pen:1 Week Later]]></title>
+    <link href="http://io.zack.io/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/"/>
+    <updated>2015-05-26T07:43:56-04:00</updated>
+    <id>http://io.zack.io/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later</id>
+    <content type="html"><![CDATA[<p>About a week ago, I went to the <a href="http://www.cooperhewitt.org/">Cooper Hewitt</a> to try the experience of visiting with their new <a href="http://www.cooperhewitt.org/2015/03/05/using-the-pen/">Pen</a>, designed in house by their technology team.</p>
 
 <h3>Using the Pen</h3>
 
@@ -615,42 +458,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <blockquote><p>&ldquo;Some of the people involved with this object include Nico Verbart (Designer) and Vlisco (Manufacturer)&rdquo;</p></blockquote>
 
 <p>As great as the pen is it&rsquo;s the experience around the pen that really completes the new experience. I&rsquo;m excited to go back and create another visit. (and maybe some more <a href="https://collection.cooperhewitt.org/users/zackshp/visits/fcmy/5047767/">wallpaper</a>)</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-17T15:46:09-04:00" pubdate data-updated="true">Oct 17<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h4>tl;dr</h4>
+  <entry>
+    <title type="html"><![CDATA[Removing Leading and Trailing Spaces and &amp;nbsp in Ruby]]></title>
+    <link href="http://io.zack.io/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/"/>
+    <updated>2014-10-17T15:46:09-04:00</updated>
+    <id>http://io.zack.io/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby</id>
+    <content type="html"><![CDATA[<h4>tl;dr</h4>
 
 <ul>
 <li>If <code>.strip</code> isn&rsquo;t working, try <code>.gsub(/\A[[:space:]]+|[[:space:]]+\z/, '')</code></li>
@@ -713,42 +529,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <p>This matches start of string <code>\A</code> and any white space character or <code>|</code> end of string <code>\A</code> and then any white space character.</p>
 
 <p>It was a particularly good find for this project because the pages I&rsquo;m scraping are littered with spaces, multiple &lsquo;\n&rsquo;s and &rsquo;\r&rsquo;s. <code>[:space]</code> gets rid of all of them!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/30/sieve-of-eratosthenes/">Sieve of Eratosthenes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-30T15:48:16-04:00" pubdate data-updated="true">Sep 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In working on <a href="https://projecteuler.net">Project Euler</a>&rsquo;s &lsquo;<a href="https://projecteuler.net/problem=3">Largest prime factor</a>&rsquo; problem I wanted a better way to find primes in a range than brute force testing each number. After a little research I found the  &ldquo;Sieve of Eratosthenes&rdquo;. (What a great name.)</p>
+  <entry>
+    <title type="html"><![CDATA[Sieve of Eratosthenes]]></title>
+    <link href="http://io.zack.io/blog/2014/09/30/sieve-of-eratosthenes/"/>
+    <updated>2014-09-30T15:48:16-04:00</updated>
+    <id>http://io.zack.io/blog/2014/09/30/sieve-of-eratosthenes</id>
+    <content type="html"><![CDATA[<p>In working on <a href="https://projecteuler.net">Project Euler</a>&rsquo;s &lsquo;<a href="https://projecteuler.net/problem=3">Largest prime factor</a>&rsquo; problem I wanted a better way to find primes in a range than brute force testing each number. After a little research I found the  &ldquo;Sieve of Eratosthenes&rdquo;. (What a great name.)</p>
 
 <p>The idea is instead of iterating through each number in a range and testing if it&rsquo;s prime, when you find a prime, remove all of it&rsquo;s multiples from the range, then continue iterating. So in the 1-100 example, finding 2 lets you get rid of 49 possibilities (all the evens except for 2) and finding 3 lets you eleminate 32 more. So almost right away you&rsquo;ve gone from iterating through 100 possibilities to 19.</p>
 
@@ -827,42 +616,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 
 
 <p>I think it could be more efficient so I&rsquo;m going to work on improving it in the next couple weeks. Having a prime generator seems pretty handy!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/18/cinch-irc-bot-setup/">Cinch IRC Bot Setup</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-18T21:05:22-04:00" pubdate data-updated="true">Aug 18<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve been wanting to setup an IRC bot for a while and finally got a chance last weekend. It was both free and easy to do using the Ruby <a href="https://github.com/cinchrb/cinch">Cinch</a> bot framework, Heroku for hosting, and Freenode for the room.  Here&rsquo;s how you can make your own little bot friend as well.</p>
+  <entry>
+    <title type="html"><![CDATA[Cinch IRC Bot Setup]]></title>
+    <link href="http://io.zack.io/blog/2014/08/18/cinch-irc-bot-setup/"/>
+    <updated>2014-08-18T21:05:22-04:00</updated>
+    <id>http://io.zack.io/blog/2014/08/18/cinch-irc-bot-setup</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been wanting to setup an IRC bot for a while and finally got a chance last weekend. It was both free and easy to do using the Ruby <a href="https://github.com/cinchrb/cinch">Cinch</a> bot framework, Heroku for hosting, and Freenode for the room.  Here&rsquo;s how you can make your own little bot friend as well.</p>
 
 <p>Before getting started, if you don&rsquo;t already have an IRC channel to use it on, follow the instructions in <a href="http://io.zack.io/blog/2014/07/21/getting-familiar-with-irc/">getting started with IRC</a> to set one up. You can make a room for anything.</p>
 
@@ -989,42 +751,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <p>Lastly, this post is about the fun things you can do with good ol&#8217; IRC. But if you want to have fun with chat and want to play with something a little more current check out the <a href="https://api.slack.com/">Slack API</a>. <a href="https://slack.com/">Slack</a> is wonderful, the API can do tons, and just like Derek Zoolander, it&rsquo;s so hot right now.</p>
 
 <p>Thanks to <a href="https://github.com/davidboy">davidboy</a> for his <a href="https://github.com/davidboy/herokubot">example app</a> that got me started building this.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/08/04/sunset-somewhere-app/">Building the Sunset Somewhere App</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-04T21:05:29-04:00" pubdate data-updated="true">Aug 4<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://sunsetsomewhere.herokuapp.com/">Sunset Somewhere</a> is a web app that <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and I built at <a href="http://flatironschool.com" target="_blank">The Flatiron School</a>. The idea is to show a big beautiful photo of a place where the sun is setting right now. It doesn’t aim to show you a sunset taking place at this moment but instead shows a photo of a place where it is currenlty setting, but which was taken in the past.</p>
+  <entry>
+    <title type="html"><![CDATA[Building the Sunset Somewhere App]]></title>
+    <link href="http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/"/>
+    <updated>2014-08-04T21:05:29-04:00</updated>
+    <id>http://io.zack.io/blog/2014/08/04/sunset-somewhere-app</id>
+    <content type="html"><![CDATA[<p><a href="http://sunsetsomewhere.herokuapp.com/">Sunset Somewhere</a> is a web app that <a href="https://github.com/mmlkrx" target="_blank">Matthias Loker</a>, <a href="https://github.com/amyrjohnson" target="_blank">Amy Johnson</a> and I built at <a href="http://flatironschool.com" target="_blank">The Flatiron School</a>. The idea is to show a big beautiful photo of a place where the sun is setting right now. It doesn’t aim to show you a sunset taking place at this moment but instead shows a photo of a place where it is currenlty setting, but which was taken in the past.</p>
 
 <h3>So where is the sun setting?</h3>
 
@@ -1056,42 +791,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <p><a href='http://sunsetsomewhere.herokuapp.com/'><img src='https://farm4.staticflickr.com/3837/14809101826_7368f83888_b.jpg' ></a></p>
 
 <p>** <strong>Note:</strong> There are more sizes available than <a href="https://www.flickr.com/services/api/misc.urls.html">the documentation currently shows</a>. You can see they have the n, c, z, etc sizes. These correspond to the sizes on a photo&rsquo;s &lsquo;all sizes&rsquo; page. <a href="https://www.flickr.com/photos/nirjadalal/5982367364/sizes/l">Some photos</a> only have the ones you see on the docs. But a lot of photos that were <a href="https://www.flickr.com/photos/stuckinthemetal/14799254526/sizes/l">uploaded within the last few years</a> have additional sizes. These are ‘h’ at 1600 on the longest side and ‘k’ at 2048 on the longest side. The API docs for the extras field say you can get the URL for some sizes with the notation <code>url_n, url_z, url_c,</code> etc. Even though they don’t mention h &amp; k they are also available. With that we were able to get a 1600px image for the app.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/21/getting-familiar-with-irc/">Getting Familiar With IRC</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-21T09:24:49-04:00" pubdate data-updated="true">Jul 21<sup>st</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;ve tried to figure out why many of the engineers I know still use IRC even though it&rsquo;s such old technology. I&rsquo;ve tried it but don&rsquo;t totally understand it. Since I&rsquo;m learning to code, it&rsquo;s time to also learn IRC.</p>
+  <entry>
+    <title type="html"><![CDATA[Getting Familiar With IRC]]></title>
+    <link href="http://io.zack.io/blog/2014/07/21/getting-familiar-with-irc/"/>
+    <updated>2014-07-21T09:24:49-04:00</updated>
+    <id>http://io.zack.io/blog/2014/07/21/getting-familiar-with-irc</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve tried to figure out why many of the engineers I know still use IRC even though it&rsquo;s such old technology. I&rsquo;ve tried it but don&rsquo;t totally understand it. Since I&rsquo;m learning to code, it&rsquo;s time to also learn IRC.</p>
 
 <p>IRC stands for Internet Relay Chat. You can read the <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">Wikipedia definition</a>, but that really doesn&rsquo;t tell you much about why or how people use it in world that also has IM clients, Twitter, SMS, iMessage, and all the other ways that we have today to connect. Honestly I don&rsquo;t totally know why either but it&rsquo;s time to dive in and find out! I asked on Twitter if it&rsquo;s still something people find useful,</p>
 
@@ -1218,42 +926,15 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <p>If you want to try building a IRC bot there is a Ruby framework called <a href="http://www.rubyinside.com/cinch-a-ruby-irc-bot-building-framework-3223.html">Cinch</a> that I&rsquo;ll be trying in the near future.</p>
 
 <p>There are a lot of modern alternatives to IRC that are less querky and easier to understand (<a href="http://slack.com">Slack!</a>)  but it&rsquo;s still a technology worth having some familiarity with.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/17/notes-on-my-beginner-dev-environment/">Notes on My Beginner Dev Environment</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-17T21:08:15-04:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This post is a quick list of some of the things I&rsquo;m doing to help me code and learn during my time at <a href="http://flatironschool.com/">The Flatiron School</a>. Shoutout to <a href="https://twitter.com/waferbaby">Dan Bogan</a> who runs <a href="http://usesthis.com/">The Setup</a>. I got the idea for the post from reading his site for years.</p>
+  <entry>
+    <title type="html"><![CDATA[Notes on My Beginner Dev Environment]]></title>
+    <link href="http://io.zack.io/blog/2014/06/17/notes-on-my-beginner-dev-environment/"/>
+    <updated>2014-06-17T21:08:15-04:00</updated>
+    <id>http://io.zack.io/blog/2014/06/17/notes-on-my-beginner-dev-environment</id>
+    <content type="html"><![CDATA[<p>This post is a quick list of some of the things I&rsquo;m doing to help me code and learn during my time at <a href="http://flatironschool.com/">The Flatiron School</a>. Shoutout to <a href="https://twitter.com/waferbaby">Dan Bogan</a> who runs <a href="http://usesthis.com/">The Setup</a>. I got the idea for the post from reading his site for years.</p>
 
 <h3>.bash_profile</h3>
 
@@ -1291,86 +972,16 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 <h3>Email</h3>
 
 <p>Lastly becuase the deluge of Github emails is overwhelming when you first start using it I have a few filters that put some things in the Inbox and some right in a Github folder. I&rsquo;m not sure all of them are really exactly right yet but the one that saves the most Inbox space is, if it says &ldquo;[GitHub] Subscribed to&rdquo; in the subject line it goes right to the Github folder.</p>
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[My First Post on Octopress]]></title>
+    <link href="http://io.zack.io/blog/2014/06/11/my-first-post-on-octopress/"/>
+    <updated>2014-06-11T07:15:22-04:00</updated>
+    <id>http://io.zack.io/blog/2014/06/11/my-first-post-on-octopress</id>
+    <content type="html"><![CDATA[<p>Hello World</p>
+]]></content>
+  </entry>
   
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Zack Sheppard -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>

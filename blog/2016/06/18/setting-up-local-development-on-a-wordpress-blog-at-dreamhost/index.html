@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Setting Up Local Development on a WordPress Blog at Dreamhost - io.zack.io</title>
+  <meta name="author" content="Zack Sheppard">
+
+  
+  <meta name="description" content="We will be working with a Mac running MAMP and a Dreamhost account running a 1-click install of WordPress. Basic Overview To run WordPress on &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://io.zack.io/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="io.zack.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">io.zack.io</a></h1>
+  
+    <h2>A tailing of error and correction</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:io.zack.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Setting Up Local Development on a WordPress Blog at Dreamhost</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-18T17:11:41-04:00" pubdate data-updated="true">Jun 18<sup>th</sup>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We will be working with a Mac running MAMP and a Dreamhost account running a 1-click install of WordPress.</p>
+
+<h2>Basic Overview</h2>
+
+<p>To run WordPress on Dreamhost, locally on your Mac there are a few things you&rsquo;ll need to do:</p>
+
+<ul>
+<li>Setup a web server
+
+<ul>
+<li>A web server like Apache or Nginx must be installed and running. The server &lsquo;listens&rsquo; for http requests so that when you go to <a href="http://localhost,">http://localhost,</a> the server responds.</li>
+<li>All servers have a &lsquo;web root&rsquo; or &lsquo;document root&rsquo; directory. When it gets an http request, it loads the files in this directory. (In our case, that&rsquo;s where we&rsquo;ll put the WordPress files.)</li>
+</ul>
+</li>
+<li>Setup a database server and the database.
+
+<ul>
+<li>Things to know
+
+<ul>
+<li>There are different types of databases, Postgres, mySQL, and others.</li>
+<li>It&rsquo;s important to understand that the &lsquo;database&rsquo; is basically just a file with information. The &lsquo;database server&rsquo; knows how to read this file and it knows how to talk to the web server so it can show on the page.The difference between a database and a database server can be confusing because even though they are seperate parts, the terms are used interchangeably. We&rsquo;ll use Excel as an analogy to try and help with this confusion.</li>
+</ul>
+</li>
+<li>Steps to setup. WordPress uses a mySQL server so that&rsquo;s what we&rsquo;ll setup here.
+
+<ul>
+<li>Install a MySQL server. (If you want to view an Excel spreadsheet .xls file, you first have to install Excel.)</li>
+<li>Start up the MySQL server and leave it running (Open Excel)</li>
+<li>Now the server is running, but we also need to create a database locally. (This is where the Excel analogy starts to fall apart a little. In the Excel example, a .xls file is self-contained with the info we need. In a database, we need to create a database that is ready to have data added. Then we will import that data into the database.)</li>
+<li>Now that the database is created, to import we do a data dump from the original database, and then export it to this one. (This is analogous to copying and pasting into a spreadsheet, but more complicated.)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Install the web server and SQL server using MAMP</h2>
+
+<p>To run WordPress locally we will need to setup MAMP. (My Apache &ndash; MySQL &ndash; PHP) So in installing this we will install the web server and SQL server at the same time. You just download and install a copy from <a href="http://mamp.info">MAMP</a></p>
+
+<p>Things to note:</p>
+
+<ul>
+<li><em>Preferences > Web Server</em> has a document root (aka the web root folder where files for websites are kept) that defaults to <code>/Applications/MAMP/htdocs</code> This is where you will place your files. So if your WordPress folder is /myWebSite and you place it at <code>/Applications/MAMP/htdocs/myWebSite</code> after everything is setup you can view it at <a href="http://localhost/myWebSite">http://localhost/myWebSite</a>
+
+<ul>
+<li>You can change that to some other web root if you like. All of my projects are in a folder called /code and I&rsquo;d rather work out of there but don&rsquo;t want to make all of /code public so I like to create a symlink in htdocs to the project that will be served out of htdocs, but we will continue the tutorial assuming you want to place the files in htdocs.</li>
+<li>htdocs is a standard name for the public folder where website files are located. It will have permissions set so it is accessible to the web.
+
+<ul>
+<li>htdocs etymology is &lsquo;HyperText Documents&rsquo;</li>
+<li>The name of the web root folder is different in different systems. Other names for the folder you might see are www and public_html.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Download the WordPress files</h2>
+
+<p>For most website hosts you&rsquo;ll use FTP to download the files. If you&rsquo;re not sure how to use FTP, start by searching the help docs for your website host. That is usually the best place to find out how to login to your particular website host, how to connect to their FTP, and it will often have information on FTP clients.</p>
+
+<p>After you&rsquo;ve downloaded your WordPress site folder, place it in htdocs.</p>
+
+<p>Now we have the files but not the database so let&rsquo;s go get that.</p>
+
+<p>[the config file?]</p>
+
+<h2>Export your database</h2>
+
+<p>Your website host will probably have phpMyAdmin which is &ldquo;A tool written in PHP intended to handle the administration of MySQL over the WWW.&rdquo; Login to that to do the export of your data. Again, if you&rsquo;re not sure how, your hosts help docs will be the best place to look.</p>
+
+<p>You&rsquo;ll need the database name, username, password, and hostname. You should see most of this in your web host panel (also known as cPanel) but you can also find some of this in the wp-config.php file which will be in the WordPress files you downloaded.</p>
+
+<p>After you are logged in:</p>
+
+<ul>
+<li>Click on the database you want to export</li>
+<li>Click the &lsquo;Export&rsquo; tab at the top of the screen</li>
+<li>phpMyAdmin will give you the option of a quick or custom export method. I  recommend custom method. Choose zip as the compression method but leave all the other options as they are and click &lsquo;Go&rsquo; to download your database.</li>
+</ul>
+
+
+<p>We now have all the parts we need from the host!</p>
+
+<h2>Start up the web server and SQL server</h2>
+
+<p>This is pretty easy. Just open MAMP and hit Start Servers.</p>
+
+<h2>Import the database</h2>
+
+<p>After MAMP is started you can administer your databases at <a href="http://localhost/phpmyadmin/">http://localhost/phpmyadmin/</a></p>
+
+<p>As of this writing, the default username and password is username: root, password: root</p>
+
+<p>After you&rsquo;re logged into phpMyAdmin:</p>
+
+<ul>
+<li>Click Databases and create a new database using a descriptive name so that when you look at your databases later, you&rsquo;ll know what this is for. (I&rsquo;m using my site name)</li>
+<li>After creating the database you should be on it&rsquo;s page. You&rsquo;ll know because there will be breadcrumb navigation showing the database name &ldquo;Server: localhost:3306 »Database: mysite&rdquo;. (phpMyAdmin can be confusing so make sure you see this.) From the database page, click &ldquo;Import&rdquo;</li>
+<li>On the import page choose the .sql.zip file we created before and import this file. When it&rsquo;s all done you will see a success message.</li>
+</ul>
+
+
+<h2>Update settings for your new host</h2>
+
+<p>All the parts are there but there are a couple steps left. There are some WordPress settings that reference the domain name. Since the domain is now localhost and not your actual domain, we&rsquo;ll need to update these.</p>
+
+<h3>Update entries in the database</h3>
+
+<p>Some WordPress settings that reference the domain name are in the database. Because we&rsquo;re working on localhost and not mydomain.com, we&rsquo;ll have to update these. To update all of them using SQL,</p>
+
+<ul>
+<li>Select your WordPress database in phpMyAdmin and go to the &lsquo;SQL&rsquo; tab</li>
+<li>Enter the following query, replacing &lsquo;<a href="http://mydomain.com">http://mydomain.com</a>&rsquo; with your domain and &lsquo;<a href="http://localhost/mydomain-com">http://localhost/mydomain-com</a>&rsquo; with your localhost URL.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='mysql'><span class='line'><span class="k">UPDATE</span> <span class="n">wp_options</span> <span class="kt">SET</span> <span class="n">option_value</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">option_value</span><span class="p">,</span> <span class="s1">&#39;http://mydomain.com&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost/mydomain-com&#39;</span><span class="p">)</span> <span class="k">WHERE</span> <span class="n">option_name</span> <span class="o">=</span> <span class="s1">&#39;home&#39;</span> <span class="k">OR</span> <span class="n">option_name</span> <span class="o">=</span> <span class="s1">&#39;siteurl&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">UPDATE</span> <span class="n">wp_posts</span> <span class="kt">SET</span> <span class="n">post_content</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">post_content</span><span class="p">,</span> <span class="s1">&#39;http://mydomain.com&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost/mydomain-com&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">UPDATE</span> <span class="n">wp_postmeta</span> <span class="kt">SET</span> <span class="n">meta_value</span> <span class="o">=</span> <span class="k">replace</span><span class="p">(</span><span class="n">meta_value</span><span class="p">,</span><span class="s1">&#39;http://mydomain.com&#39;</span><span class="p">,</span><span class="s1">&#39;http://localhost/mydomain-com&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>wp_options, wp_posts, and wp_postmeta are tables in the database. If you get an error that the tables aren&rsquo;t found, check the database itself for the table names. Sometimes WordPress is setup giving these table names prefixes. If they are different just change the table name in the SQL statement to match the actual tables.</li>
+</ul>
+
+
+<h3>Update the WordPress config file</h3>
+
+<p>We&rsquo;re almost done! Next, we&rsquo;re going to update the wp-config.php file so it has the correct database information.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="sd">/** The name of the database for WordPress */</span>
+</span><span class='line'><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;database_name_here&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="sd">/** MySQL database username */</span>
+</span><span class='line'><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;username_here&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">/** MySQL database password */</span>
+</span><span class='line'><span class="nb">define</span><span class="p">(</span><span class="s1">&#39;DB_PASSWORD&#39;</span><span class="p">,</span> <span class="s1">&#39;password_here&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Set the MySQL username as your local mysql username, usually the default is <code>root</code>. If you have set password for mySQL user root on your localhost, then enter that password. (The default password should be <code>root</code> on a MAMP install) Otherwise leave it empty and save your changes.</p>
+
+<p>If you&rsquo;re unsure of the MySQL password it can be a pain to change. Instead of giving instructions here, check out the current MAMP docs.</p>
+
+<p>After the config change is made you&rsquo;re site should now be live at <a href="http://localhost/mysite">http://localhost/mysite</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zack Sheppard</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-18T17:11:41-04:00" pubdate data-updated="true">Jun 18<sup>th</sup>, 2016</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://io.zack.io/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/" data-via="" data-counturl="http://io.zack.io/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/" title="Previous Post: Saving user data in the Hubot Redis brain">&laquo; Saving user data in the Hubot Redis brain</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/" title="Next Post: Layout in the WordPress Twenty Sixteen theme">Layout in the WordPress Twenty Sixteen theme &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Zack Sheppard -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

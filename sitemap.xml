@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/</loc>
+    <lastmod>2017-04-07T17:15:40-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/</loc>
+    <lastmod>2016-06-18T17:11:41-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/</loc>
+    <lastmod>2015-06-07T13:38:18-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/</loc>
+    <lastmod>2015-05-26T07:43:56-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/</loc>
+    <lastmod>2014-10-17T15:46:09-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/09/30/sieve-of-eratosthenes/</loc>
+    <lastmod>2014-09-30T15:48:16-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/08/18/cinch-irc-bot-setup/</loc>
+    <lastmod>2014-08-18T21:05:22-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/08/04/sunset-somewhere-app/</loc>
+    <lastmod>2014-08-04T21:05:29-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/07/21/getting-familiar-with-irc/</loc>
+    <lastmod>2014-07-21T09:24:49-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/06/17/notes-on-my-beginner-dev-environment/</loc>
+    <lastmod>2014-06-17T21:08:15-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/blog/2014/06/11/my-first-post-on-octopress/</loc>
+    <lastmod>2014-06-11T07:15:22-04:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://io.zack.io/blog/archives/</loc>
+    <lastmod>2017-04-09T14:09:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/</loc>
+    <lastmod>2017-04-09T14:09:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/irc/index4.html</loc>
+    <lastmod>2017-04-09T14:09:45-04:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://io.zack.io/irc/index.html</loc>
+    <lastmod>2017-04-09T14:01:1491760860Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://io.zack.io/irc/irc.html</loc>
+    <lastmod>2017-04-09T14:01:1491760860Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset>

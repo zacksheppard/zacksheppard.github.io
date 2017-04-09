@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Cinch IRC Bot Setup - io.zack.io</title>
+  <meta name="author" content="Zack Sheppard">
+
+  
+  <meta name="description" content="I&rsquo;ve been wanting to setup an IRC bot for a while and finally got a chance last weekend. It was both free and easy to do using the Ruby Cinch &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://io.zack.io/blog/2014/08/18/cinch-irc-bot-setup">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="io.zack.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">io.zack.io</a></h1>
+  
+    <h2>A tailing of error and correction</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:io.zack.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Cinch IRC Bot Setup</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-18T21:05:22-04:00" pubdate data-updated="true">Aug 18<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&rsquo;ve been wanting to setup an IRC bot for a while and finally got a chance last weekend. It was both free and easy to do using the Ruby <a href="https://github.com/cinchrb/cinch">Cinch</a> bot framework, Heroku for hosting, and Freenode for the room.  Here&rsquo;s how you can make your own little bot friend as well.</p>
+
+<p>Before getting started, if you don&rsquo;t already have an IRC channel to use it on, follow the instructions in <a href="http://io.zack.io/blog/2014/07/21/getting-familiar-with-irc/">getting started with IRC</a> to set one up. You can make a room for anything.</p>
+
+<h3>Creating the basic bot</h3>
+
+<p>We&rsquo;re going to use Github and Heroku so <a href="https://help.github.com/articles/create-a-repo">setup a Git repository and clone it locally</a>.</p>
+
+<p>Next we&rsquo;ll setup the bot. We will start with a very simple bot that just replies to &lsquo;!hello&rsquo; and then give resources on how to add more features after that.</p>
+
+<p>The bot itself only needs a few files and thanks to Cinch they can all be in the root directory of the app.</p>
+
+<figure class='code'><figcaption><span>/Gemfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;cinch&#39;</span>
+</span><span class='line'><span class="c1"># There are also Cinch plugins that you can add here later</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/bot.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># This is the actual bot config and command logic </span>
+</span><span class='line'><span class="c1">#! /usr/bin/env ruby</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;cinch&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">bot</span> <span class="o">=</span> <span class="no">Cinch</span><span class="o">::</span><span class="no">Bot</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="s1">&#39;irc.freenode.net&#39;</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;BotName&#39;</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">nick</span> <span class="o">=</span> <span class="s1">&#39;BotName&#39;</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">realname</span> <span class="o">=</span> <span class="s1">&#39;My Bot&#39;</span>
+</span><span class='line'>    <span class="n">c</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="s1">&#39;#your-channel-name&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">on</span> <span class="ss">:message</span><span class="p">,</span> <span class="s2">&quot;!hello&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">m</span><span class="o">.</span><span class="n">reply</span> <span class="s2">&quot;Why hello there.&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">bot</span><span class="o">.</span><span class="n">start</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/config.ru</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># This can literally be empty, but you need to have the file.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>/Procfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Here we will specify commands for Heroku to start the bot.</span>
+</span><span class='line'><span class="ss">web</span><span class="p">:</span> <span class="n">echo</span> <span class="s2">&quot;foobar&quot;</span> <span class="o">&gt;</span> <span class="sr">/dev/nu</span><span class="n">ll</span>
+</span><span class='line'><span class="ss">bot</span><span class="p">:</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">ruby</span> <span class="n">bot</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Deploy to Heroku</h3>
+
+<p>Next push it up to Heroku and start it up with these commands:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku create
+</span><span class='line'>git push heroku master
+</span><span class='line'>heroku scale <span class="nv">web</span><span class="o">=</span>0
+</span><span class='line'>heroku scale <span class="nv">bot</span><span class="o">=</span>1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now if you type &lsquo;!hello&rsquo; into your IRC channel the bot should reply!</p>
+
+<h3>Creating commands for the bot</h3>
+
+<h4>(aka, what can I do with this?)</h4>
+
+<iframe src="//giphy.com/embed/AMxICdfT4DeCI" width="500" height="350" frameBorder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+
+<p>Now that you have a working bot that accepts input and gives output back, you can have it do all kinds of things. It&rsquo;s great for work related things or just for having fun. It could make snarky replies to words said in the channel, play games, lookup information on the web, talk to APIs, whatever you want. We&rsquo;re in the internet of things now! Make it tell you when there&rsquo;s a new pot of coffee or when you&rsquo;re roommate is stealing your Ice Cream.</p>
+
+<p>Here are a few resources to give you some ideas:</p>
+
+<ul>
+<li><a href="http://rubydoc.info/gems/cinch/frames">Cinch API docs</a></li>
+<li><a href="https://github.com/cinchrb/cinch/tree/master/examples">Examples on Cinch project</a></li>
+<li><a href="https://github.com/Bluebot/Bluebot">Other</a> <a href="https://github.com/ta/bishop">Cinchbots</a> on <a href="https://github.com/search?l=Ruby&amp;q=cinch&amp;type=Repositories&amp;utf8=%E2%9C%93">Github</a></li>
+<li><a href="https://github.com/Quintus/cinch-plugins">Quintus Cinch plugin collection</a></li>
+<li>A few <a href="https://rubygems.org/search?utf8=%E2%9C%93&amp;query=cinch">plugins on Rubygems.org</a></li>
+<li>Github released their IRC bot <a href="https://hubot.github.com/">Hubot</a> for anyone to use. It&rsquo;s not written in Ruby but has a lot of parts plugins to  give you ideas for what you&rsquo;ll want your bot to do. You can see a big list of Hubot plugins <a href="https://github.com/github/hubot-scripts/tree/master/src/scripts">here</a>. Everything from &ldquo;<em>Tell Hubot to send a user a message right now !</em>&rdquo; to &ldquo;<em>Fetches an image of the Mint Plaza Blue Bottle Line.</em>&rdquo;</li>
+</ul>
+
+
+<p>Lastly, this post is about the fun things you can do with good ol&#8217; IRC. But if you want to have fun with chat and want to play with something a little more current check out the <a href="https://api.slack.com/">Slack API</a>. <a href="https://slack.com/">Slack</a> is wonderful, the API can do tons, and just like Derek Zoolander, it&rsquo;s so hot right now.</p>
+
+<p>Thanks to <a href="https://github.com/davidboy">davidboy</a> for his <a href="https://github.com/davidboy/herokubot">example app</a> that got me started building this.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zack Sheppard</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-18T21:05:22-04:00" pubdate data-updated="true">Aug 18<sup>th</sup>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://io.zack.io/blog/2014/08/18/cinch-irc-bot-setup/" data-via="" data-counturl="http://io.zack.io/blog/2014/08/18/cinch-irc-bot-setup/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/04/sunset-somewhere-app/" title="Previous Post: Building the Sunset Somewhere app">&laquo; Building the Sunset Somewhere app</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/09/30/sieve-of-eratosthenes/" title="Next Post: Sieve of Eratosthenes">Sieve of Eratosthenes &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Zack Sheppard -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

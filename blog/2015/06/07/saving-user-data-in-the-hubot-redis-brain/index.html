@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Saving User Data in the Hubot Redis Brain - io.zack.io</title>
+  <meta name="author" content="Zack Sheppard">
+
+  
+  <meta name="description" content="This is a quick tutorial about saving user data in the Hubot Redis brain using the Slack adapter. There is documentation out there about the hubot- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://io.zack.io/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="io.zack.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">io.zack.io</a></h1>
+  
+    <h2>A tailing of error and correction</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:io.zack.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Saving User Data in the Hubot Redis Brain</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-07T13:38:18-04:00" pubdate data-updated="true">Jun 7<sup>th</sup>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is a quick tutorial about saving user data in the Hubot Redis brain using the Slack adapter.</p>
+
+<p>There is documentation out there about the <a href="https://github.com/hubot-scripts/hubot-redis-brain">hubot-redis-brain</a>, about <a href="http://redis.io/commands">redis commands</a>, and the <a href="https://github.com/slackhq/hubot-slack">Hubot slack adapter</a>, but very little mention of how to use them all together.</p>
+
+<p>I&rsquo;m writing a couple hubot scripts that need to save data about a user but want to know if there is already built to handle this. Does hubot have built in commands to access and save data? If so how is the data stored? How does this work with the Slack adapter? What is the unique identifier? In looking for answers to these questions I learned a little about Hubot, redis, and Slack.</p>
+
+<h2>Before starting</h2>
+
+<ul>
+<li>If you don&rsquo;t have Hubot installed, we&rsquo;ll be using the Slack adapter in this example so start with <a href="the%20instructions%20on%20the%20slack-hubot%20adapter">https://github.com/slackhq/hubot-slack</a>.</li>
+<li>If there is a Hubot you&rsquo;re already working with make sure that the <a href="hubot-redis-brain">https://github.com/hubot-scripts/hubot-redis-brain</a> and <a href="slack-bot">https://github.com/slackhq/hubot-slack</a> packages are installed.</li>
+</ul>
+
+
+<p>You&rsquo;ll also need to configure the Hubot integration in Slack. In Slack Click the team name > Configure Integrations > Hubot. After configuring it you&rsquo;ll be given an API token which you&rsquo;ll need for Heroku and for local testing.</p>
+
+<h4>Troubleshooting notes</h4>
+
+<h2>robot.brain</h2>
+
+<p>Hubot has an &ldquo;<em><a href="https://github.com/github/hubot/blob/master/docs/scripting.md#persistence"> in-memory key-value store</a> exposed as robot.brain that can be used to store and retrieve data by scripts.</em>&rdquo; Since it is only in-memory it really isn&rsquo;t persistent. When hubot restarts, all that data will be gone. That&rsquo;s where <a href="https://github.com/hubot-scripts/hubot-redis-brain">hubot-redis-brain</a> comes in. Because <code>robot-brain</code> it&rsquo;s just a Redis instance, you can use all of the <a href="http://redis.io/commands">Redis commands</a> for getting setting, etc.</p>
+
+<h2>robot.brain.users</h2>
+
+<p>The brain has  users object with a key of users and a key value pair for each user. At a minimum <a href="https://github.com/github/hubot/blob/d1f5e1445b6d70a940b64f289c7fc7d0270dee72/src/user.coffee">hubot sets an ID</a>. Other adapters and scripts may set additional key value pairs.</p>
+
+<p>The hubot methods for looking up users are <code>userForName</code>, <code>userForId</code>, <code>userForFuzzyName</code>, and <code>usersForFuzzyName</code>.</p>
+
+<h2>robot.brain.users &amp; slack</h2>
+
+<p>This is a sample of the users object when using the slack adapter:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="s2">&quot;users&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>        <span class="s2">&quot;1&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Shell&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;room&quot;</span><span class="o">:</span> <span class="s2">&quot;Shell&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="s2">&quot;A12B3CDE4&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="s2">&quot;email_address&quot;</span><span class="o">:</span> <span class="s2">&quot;example@zack.io&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;A12B3CDE4&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;jane&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;real_name&quot;</span><span class="o">:</span> <span class="s2">&quot;Jane Smith&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;room&quot;</span><span class="o">:</span> <span class="s2">&quot;general&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="s2">&quot;A12H7OYG4&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;A12H7OYG4&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;hubot&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;real_name&quot;</span><span class="o">:</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="s2">&quot;USLACKBOT&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class='line'>            <span class="s2">&quot;email_address&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;USLACKBOT&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;slackbot&quot;</span><span class="p">,</span>
+</span><span class='line'>            <span class="s2">&quot;real_name&quot;</span><span class="o">:</span> <span class="s2">&quot;slackbot&quot;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can see there are 2 Hubots, and one real person in the room. Now we know that the ID is set based on the Slack user id so we can use this to save additional information.</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://github.com/karlseguin/the-little-redis-book/blob/master/en/redis.md">The Little Redis Book</a> It&rsquo;s available for free on ePub. Kindle doesn&rsquo;t support ePub but you can easily import it into iBooks</li>
+<li><a href="https://github.com/uglide/RedisDesktopManager/wiki/Quick-Start#connect-to-local-or-public-redis-server">Redis Desktop Manager</a></li>
+<li><a href="https://github.com/github/hubot/blob/master/docs/scripting.md">Hubot Scripting Guide</a> and the section on Persistence](<a href="https://github.com/github/hubot/blob/master/docs/scripting.md#persistence">https://github.com/github/hubot/blob/master/docs/scripting.md#persistence</a>)</li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+</ul>
+
+
+<h3>Scripts that helped by example</h3>
+
+<ul>
+<li><a href="https://github.com/hubot-scripts/hubot-standup-alarm/blob/master/scripts/standup.js">Standup alarm</a></li>
+<li><a href="https://github.com/anroots/hubot-simple-phonebook/blob/master/src/simple-phonebook.coffee">Simple phonebook</a></li>
+</ul>
+
+
+<h3>Source code</h3>
+
+<ul>
+<li><a href="https://github.com/github/hubot/blob/402af1db05c070dbe59967bfe83a9c8e759598aa/src/brain.coffee">Hubot brain.coffee</a></li>
+<li><a href="https://github.com/github/hubot/blob/d1f5e1445b6d70a940b64f289c7fc7d0270dee72/src/user.coffee">Hubot user.coffee</a></li>
+<li><a href="https://github.com/github/hubot/blob/39681ea35de6375154748418e11f533ef51c3340/src/adapter.coffee">Hubot adapter.coffee</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zack Sheppard</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-07T13:38:18-04:00" pubdate data-updated="true">Jun 7<sup>th</sup>, 2015</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://io.zack.io/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/" data-via="" data-counturl="http://io.zack.io/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/" title="Previous Post: Thoughts on the Cooper Hewitt Pen:1 week later">&laquo; Thoughts on the Cooper Hewitt Pen:1 week later</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/" title="Next Post: Setting up local development on a WordPress blog at Dreamhost">Setting up local development on a WordPress blog at Dreamhost &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Zack Sheppard -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

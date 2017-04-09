@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Sieve of Eratosthenes - io.zack.io</title>
+  <meta name="author" content="Zack Sheppard">
+
+  
+  <meta name="description" content="In working on Project Euler&rsquo;s &lsquo;Largest prime factor&rsquo; problem I wanted a better way to find primes in a range than brute force &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://io.zack.io/blog/2014/09/30/sieve-of-eratosthenes">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="io.zack.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">io.zack.io</a></h1>
+  
+    <h2>A tailing of error and correction</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:io.zack.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Sieve of Eratosthenes</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-30T15:48:16-04:00" pubdate data-updated="true">Sep 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In working on <a href="https://projecteuler.net">Project Euler</a>&rsquo;s &lsquo;<a href="https://projecteuler.net/problem=3">Largest prime factor</a>&rsquo; problem I wanted a better way to find primes in a range than brute force testing each number. After a little research I found the  &ldquo;Sieve of Eratosthenes&rdquo;. (What a great name.)</p>
+
+<p>The idea is instead of iterating through each number in a range and testing if it&rsquo;s prime, when you find a prime, remove all of it&rsquo;s multiples from the range, then continue iterating. So in the 1-100 example, finding 2 lets you get rid of 49 possibilities (all the evens except for 2) and finding 3 lets you eleminate 32 more. So almost right away you&rsquo;ve gone from iterating through 100 possibilities to 19.</p>
+
+<p>It&rsquo;s one of the most efficient ways to find prime numbers up to about 10,000,000 according to <a href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes">Wikipedia</a> and a couple other sources I found.</p>
+
+<p>Ruby&rsquo;s <code>Prime</code> class has an <a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/prime/rdoc/Prime/EratosthenesGenerator.html">Eratosthenes Generator</a> which you can use to, well, generate prime numbers of course.</p>
+
+<figure class='code'><figcaption><span>Sample use of an EratosthenesGenerator in IRB </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">irb</span> <span class="o">&gt;</span> <span class="nb">require</span> <span class="s1">&#39;Prime&#39;</span>
+</span><span class='line'><span class="n">irb</span> <span class="o">&gt;</span> <span class="n">prime_generator</span> <span class="o">=</span> <span class="no">Prime</span><span class="o">::</span><span class="no">EratosthenesGenerator</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="c1">#&lt;Prime::EratosthenesGenerator:0x000001011aaa20 @last_prime_index=-1, @ubound=nil&gt;</span>
+</span><span class='line'><span class="n">irb</span> <span class="o">&gt;</span> <span class="n">primes</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="n">irb</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'><span class="n">irb</span> <span class="o">&gt;</span>   <span class="n">primes</span> <span class="o">&lt;&lt;</span> <span class="n">prime_generator</span><span class="o">.</span><span class="n">next</span>
+</span><span class='line'><span class="n">irb</span> <span class="o">&gt;</span> <span class="k">end</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Because I want to better understand ol&#8217; Eratosthenes and I need a range of primes between x and y, I wrote my own method.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;prime&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">eratosthenes_sieve</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">raise</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">num</span><span class="si">}</span><span class="s2"> is too big a number for eratosthenes_sieve. Please enter a number under 10000000.&quot;</span> <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">9999999</span>
+</span><span class='line'>  <span class="k">raise</span> <span class="s2">&quot;2 is the first prime number. Please enter a number of 2 or greater.&quot;</span> <span class="k">if</span> <span class="n">num</span> <span class="o">&lt;</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="n">range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.num</span><span class="p">)</span><span class="o">.</span><span class="n">to_a</span>
+</span><span class='line'>  <span class="n">range</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">number</span><span class="o">|</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">number</span><span class="o">.</span><span class="n">prime?</span>
+</span><span class='line'>      <span class="c1"># puts &quot;#{number} is prime&quot;</span>
+</span><span class='line'>      <span class="n">range</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="nb">p</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">p</span> <span class="o">%</span> <span class="n">number</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">p</span> <span class="o">&gt;</span> <span class="n">number</span>
+</span><span class='line'>          <span class="n">range</span><span class="o">.</span><span class="n">delete_at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>          <span class="c1"># puts &quot;Deleting #{p}&quot;</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">range</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A couple notes:</p>
+
+<ul>
+<li>This includes a <code>raise</code> in case someone tries to use it with too big a number. Above that number the sieve isn&rsquo;t as efficient and the process would run for a long time taking up a lot of memory.</li>
+<li>With a large number it can take a while so there are 2 <code>puts</code> statements that can be commented out to watch it work.</li>
+</ul>
+
+
+<p>I think it could be more efficient so I&rsquo;m going to work on improving it in the next couple weeks. Having a prime generator seems pretty handy!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zack Sheppard</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-30T15:48:16-04:00" pubdate data-updated="true">Sep 30<sup>th</sup>, 2014</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://io.zack.io/blog/2014/09/30/sieve-of-eratosthenes/" data-via="" data-counturl="http://io.zack.io/blog/2014/09/30/sieve-of-eratosthenes/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/18/cinch-irc-bot-setup/" title="Previous Post: Cinch IRC bot Setup">&laquo; Cinch IRC bot Setup</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/" title="Next Post: Removing leading and trailing spaces and &amp;nbsp in Ruby">Removing leading and trailing spaces and &amp;nbsp in Ruby &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Zack Sheppard -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

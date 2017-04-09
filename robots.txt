@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://io.zack.io/sitemap.xml 

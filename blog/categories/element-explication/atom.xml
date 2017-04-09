@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Element-explication | io.zack.io]]></title>
+  <link href="http://io.zack.io/blog/categories/element-explication/atom.xml" rel="self"/>
+  <link href="http://io.zack.io/"/>
+  <updated>2017-04-09T14:09:45-04:00</updated>
+  <id>http://io.zack.io/</id>
+  <author>
+    <name><![CDATA[Zack Sheppard]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Layout in the WordPress Twenty Sixteen Theme]]></title>
+    <link href="http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/"/>
+    <updated>2017-04-07T17:15:40-04:00</updated>
+    <id>http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m going to make some changes to a child theme of the WordPress <a href="https://theme.wordpress.com/themes/twentysixteen/">Twenty Sixteen theme</a>. It&rsquo;s currently one of my favorite starting points when theming in WordPress. It is simple but not plain, the border and strong headlines have a good modern look, and it doesn&rsquo;t look like everyting else right now so it won&rsquo;t go out of style in a couple years.</p>
+
+<p>Making changes or additions to a WordPress theme is often difficult because there is a lot going on that I don&rsquo;t understand as far as how the elements work together to create the layout. I&rsquo;m going to do what I should probably have been doing in the past, take a couple hours to really understand all the elements, what they are doing and how they work together so working with the theme is less of a fight.</p>
+
+<p>This post is a bit of an experiment. I&rsquo;ll list out divs that you&rsquo;ll come across when inspecting the page and explain how they affect layout. This mimicks the process I went through when figuring out how the theme works.</p>
+
+<h2>Layout by element</h2>
+
+<p>Note: I&rsquo;m using a bulleted list to show each element and nested bullets will describe what you need to know about it <em>and</em> list nested elements inside of it. I&rsquo;m not 100% sold on this presentation since it doesn&rsquo;t let me easily include blocks of code but it&rsquo;s a good first try at documenting the information. It is useful to inspect a Twenty Sixteen page and use this guide in another window as it explains how the elements work together.</p>
+
+<p><strong>tl;dr</strong>
+Margins are controlled by percentage in this theme. <code>.site-content</code> is the main container. <code>.content-area</code> width changes depending on if there is a sidebar.</p>
+
+<ul>
+<li><code>body</code></li>
+<li>The theme has a border on all sides of the browser window. The border is the body itself on the sides; there are body::before and body::after elements that are position: fixed that make the border at the top and bottom.
+
+<ul>
+<li><code>.site</code>
+
+<ul>
+<li>Margins on .site show the body and create the border.</li>
+<li><code>.site-inner</code>
+
+<ul>
+<li>It has a max-width of 1320px that constrains the layout so it doesn&rsquo;t expand forever.</li>
+<li><code>.header</code>
+
+<ul>
+<li>Header layout uses flex box.</li>
+<li>It has padding set in percentage, which changes with screensize and sets its layout dimensions inside .site-inner</li>
+<li><code>.site-content</code>
+
+<ul>
+<li>This is the main content container (as in the content of pages and posts). All posts and pages are in here.</li>
+<li>It has side padding set in percentage. This is the main padding for the content inside the border</li>
+<li><code>.content-area</code>
+
+<ul>
+<li>This is the content area for articles and a sidebar if you have one.</li>
+<li>Twenty Sixteen has an optional sidebar. If you have no sidebar it has .no-sidebar and a width of 100% (100% of .site-content). If there is a .sidebar, width is 70%</li>
+<li><code>.sidebar</code>
+
+<ul>
+<li>If a sidebar is enabled, it is width: 25%</li>
+</ul>
+</li>
+<li><code>.site-main</code> &amp; <code>.site-main &gt; article</code>
+
+<ul>
+<li>These have bottom margin but no other layout rules that we need to worry about.</li>
+<li><code>.entry-header</code>
+
+<ul>
+<li>The margins for .entry-header and .entry-content line up to create the article.</li>
+<li>Side margins here start to constrain content to create the article shape. Margins are in % and change via min-width media queries.</li>
+<li>If you were going to change the article width, you&rsquo;d change the margin percentages on .entry-header, .entry-summary, and .entry-content.</li>
+</ul>
+</li>
+<li><code>.entry-summary</code>
+
+<ul>
+<li>Same side margin rules as .enry-content and .entry-header (the margins for all 3 of these are declared in the same rule)</li>
+</ul>
+</li>
+<li><code>.post-thumbnail</code>
+
+<ul>
+<li>This is the Featured Image. It will show at up to 1200px. It isn&rsquo;t constrained by the .entry-content margins which is what allows it to overhang an article. It&rsquo;s limit is .site-content.</li>
+</ul>
+</li>
+<li><code>.entry-content</code>
+
+<ul>
+<li><em>This is where the real complication is.</em> If you are working with a post or a page, this is where the content will go. .entry-content and the div that follows it, .entry-footer are float: left. In the mobile view, the footer is below the content. In the desktop view they are still both floated left with the footer technically after the content. But the margins are moved around so the footer appears to be before the content.</li>
+<li>To break this down, for .site-content, If the window is <code>&gt; 61.5625em</code>  &amp; <code>article:not(.type-page)</code>; <code>float: left;</code> (both this and .entry-footer float left); <code>margin-right: -100%;</code> (this pulls .entry-footer to the left, aligning it with the title)
+<code>margin-left: 34.99999999%;</code> (this creates the space on the left of the content for the footer)
+<code>width: 50.00000001%;</code> (50% of .site-content)</li>
+<li><code>img.below-entry-meta</code> for images larger than 840px
+
+<ul>
+<li>Images in the post wider than or equal to 840px overhang the column. They will have a .size-full class but this isn&rsquo;t what applies the style.</li>
+<li>.below-entry-meta has the css rules <code>margin-left: -40%; max-width: 140%</code>. Again we are using percentage to set layout.</li>
+<li>This overhang is only applied > 61em (removing that one style gets rid of the overhang)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>After doing this explication of the layout, creating the testimonials shortcode was much easier than other changes I&rsquo;ve made. It&rsquo;s epecially handy since this particular theme has things lining up in weird ways so it&rsquo;s hard to tell how they work together. The above notes will also be useful for my next changes.</p>
+]]></content>
+  </entry>
+  
+</feed>
