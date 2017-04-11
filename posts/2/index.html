@@ -9,8 +9,7 @@
   <meta name="author" content="Zack Sheppard">
 
   
-  <meta name="description" content="Hello World
-">
+  <meta name="description" content="This post is a quick list of some of the things I&rsquo;m doing to help me code and learn during my time at The Flatiron School. Shoutout to Dan &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +71,79 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/06/17/notes-on-my-beginner-dev-environment/">Notes on My Beginner Dev Environment</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-17T21:08:15-04:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post is a quick list of some of the things I&rsquo;m doing to help me code and learn during my time at <a href="http://flatironschool.com/">The Flatiron School</a>. Shoutout to <a href="https://twitter.com/waferbaby">Dan Bogan</a> who runs <a href="http://usesthis.com/">The Setup</a>. I got the idea for the post from reading his site for years.</p>
+
+<h3>.bash_profile</h3>
+
+<p>I&rsquo;ve used Terminal quite a bit over the last few years, at times even to manipulate servers at companies I worked at. But I&rsquo;ve never felt very at home there both because it was unfamiliar and because it&rsquo;s confusing to know what was going on if you don&rsquo;t use it frequently.</p>
+
+<p>I made some cosmetic changes to a make it feel more like mine and make it a place I&rsquo;m excited about hanging out in all day. I also made some functional changes that I think are better suited for someone that is just getting started programming. When first starting out learning to code there are so many little things you can get wrong. I wanted to minimize the possibility that it&rsquo;s not working because I&rsquo;m in the wrong folder or some other small thing about the parts around my code so I could focus on the code itself. The things I changed about the prompt (so far) are:</p>
+
+<ul>
+<li>I modified the command line into a 3 line format to have a single line across the top so I can easily find my place for those times when 12 screens of text go swooping by and you want to find where it started. This is small but again I think these small things that make you feel less lost are helpful when you&rsquo;re eyes aren&rsquo;t used to scanning all that text.</li>
+<li>Print out the full path so I always know where I&rsquo;m at in the file system. This was important for me especially while I&rsquo;m getting used to the command line because I didn&rsquo;t have the skill to just keep where I am in the file system in my head. It&rsquo;s getting easier already though and I might not need this much longer.</li>
+<li>Because the directory can get long I have the prompt on it&rsquo;s own line which is actually really nice and clean. It&rsquo;s also great for copy/pasting commands.</li>
+<li>In addition to showing the git branch I also made it so the branch name is red if it&rsquo;s dirty and green if it&rsquo;s clean to remind me to commit often. (link to )
+<img src="https://farm6.staticflickr.com/5497/14261841518_9ba0b709cf_b.jpg" alt="git-color" /></li>
+<li>After a couple weeks I added a calm emoji bear on that hangs out on the right. It&rsquo;s a small thing but I think these small things that are a little fun to make this new environment are really great and helpful to make the termainal more cozy. If you&rsquo;re a 7th level blackbelt DB admin you might only need <code>$</code> but I am happy to have my cozy little prompt.</li>
+</ul>
+
+
+<h4>I also made these other small changes to .bash_profile</h4>
+
+<ul>
+<li>A few aliases to directories I use a lot like <code>flat3</code> (for my flatiron/week3 directory), <code>flat4</code>, etc.
+<img src="https://farm4.staticflickr.com/3894/14261960917_49d414b698_b.jpg" alt="flat3" /></li>
+<li>A <a href="http://brettterpstra.com/2014/05/10/bash-and-dash/">function</a> to pull up documentation via <a href="http://kapeli.com/dash">dash</a> from the command line (Which I finally bought, it was totally worth it.)</li>
+</ul>
+
+
+<p>Lastly I increased the font to 16pt and installed the excellent <a href="http://ethanschoonover.com/solarized">Solarized</a> color scheme on Terminal and Sublime Text. The colors are cozy, I can look at them all day, and because there is less contrast between the colors they reduce eye strain.</p>
+
+<h3>Notes</h3>
+
+<p>Evernote is my go to for notes of all kinds. I can make notes and they are available wherever I go including on my commute. If you use it with the Chrome clipper extension you can clip entire pages (like the method documentation, hint hint!) and read them anywhere. I use 2 folders &ldquo;Flatiron Notes&rdquo; &amp; &ldquo;Flatiron Reading&rdquo;</p>
+
+<p>Evernote isn&rsquo;t great for code though so I&rsquo;m also experimenting with adding a lessons_learned.md to my assignments. I&rsquo;ve been trying to do a recap instead of just going on to the next thing so for the last couple assignments after I save and push to git I rewind the changes with Cmd+Z, then go forward through them using Shift+Cmd+Z. At each point where i remember making a break through i copy that, and make a note about what i was thinking and what i learned. This isn&rsquo;t optimal, if you change somethig you can no longer Shift+Cmd+Z forward and have to restore from master. I might start adding the file to my .gitignore since I get all deep sometimes and it might be weird to let people see me talk to myself.</p>
+
+<h3>Email</h3>
+
+<p>Lastly becuase the deluge of Github emails is overwhelming when you first start using it I have a few filters that put some things in the Inbox and some right in a Github folder. I&rsquo;m not sure all of them are really exactly right yet but the one that saves the most Inbox space is, if it says &ldquo;[GitHub] Subscribed to&rdquo; in the subject line it goes right to the Github folder.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/06/11/my-first-post-on-octopress/">My First Post on Octopress</a></h1>
     
     
@@ -118,7 +190,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+        <a href="/blog/2017/04/10/fun-with-the-wordpress-rest-api/">Fun With the WordPress REST API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/28/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
       </li>
     
       <li class="post">
@@ -131,10 +207,6 @@
     
       <li class="post">
         <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
       </li>
     
   </ul>

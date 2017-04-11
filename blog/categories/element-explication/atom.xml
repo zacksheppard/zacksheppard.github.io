@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Element-explication | io.zack.io]]></title>
   <link href="http://io.zack.io/blog/categories/element-explication/atom.xml" rel="self"/>
   <link href="http://io.zack.io/"/>
-  <updated>2017-04-09T14:09:45-04:00</updated>
+  <updated>2017-04-11T17:03:53-04:00</updated>
   <id>http://io.zack.io/</id>
   <author>
     <name><![CDATA[Zack Sheppard]]></name>
@@ -15,12 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[Layout in the WordPress Twenty Sixteen Theme]]></title>
-    <link href="http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/"/>
-    <updated>2017-04-07T17:15:40-04:00</updated>
-    <id>http://io.zack.io/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme</id>
+    <link href="http://io.zack.io/blog/2017/03/28/layout-in-the-wordpress-twenty-sixteen-theme/"/>
+    <updated>2017-03-28T17:15:40-04:00</updated>
+    <id>http://io.zack.io/blog/2017/03/28/layout-in-the-wordpress-twenty-sixteen-theme</id>
     <content type="html"><![CDATA[<p>I&rsquo;m going to make some changes to a child theme of the WordPress <a href="https://theme.wordpress.com/themes/twentysixteen/">Twenty Sixteen theme</a>. It&rsquo;s currently one of my favorite starting points when theming in WordPress. It is simple but not plain, the border and strong headlines have a good modern look, and it doesn&rsquo;t look like everyting else right now so it won&rsquo;t go out of style in a couple years.</p>
 
-<p>Making changes or additions to a WordPress theme is often difficult because there is a lot going on that I don&rsquo;t understand as far as how the elements work together to create the layout. I&rsquo;m going to do what I should probably have been doing in the past, take a couple hours to really understand all the elements, what they are doing and how they work together so working with the theme is less of a fight.</p>
+<p>Making changes or additions to a WordPress theme is often difficult because there is a lot going on with how the elements work together to create the layout. I&rsquo;m going to do what I should probably have been doing in the past, take a couple hours to really understand all the elements, what they are doing and how they work together so working with the theme is less of a fight.</p>
 
 <p>This post is a bit of an experiment. I&rsquo;ll list out divs that you&rsquo;ll come across when inspecting the page and explain how they affect layout. This mimicks the process I went through when figuring out how the theme works.</p>
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Wordpress | io.zack.io]]></title>
+  <link href="http://io.zack.io/blog/categories/wordpress/atom.xml" rel="self"/>
+  <link href="http://io.zack.io/"/>
+  <updated>2017-04-11T17:03:53-04:00</updated>
+  <id>http://io.zack.io/</id>
+  <author>
+    <name><![CDATA[Zack Sheppard]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fun With the WordPress REST API]]></title>
+    <link href="http://io.zack.io/blog/2017/04/10/fun-with-the-wordpress-rest-api/"/>
+    <updated>2017-04-10T15:08:56-04:00</updated>
+    <id>http://io.zack.io/blog/2017/04/10/fun-with-the-wordpress-rest-api</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m just starting to experiment with the <a href="http://v2.wp-api.org/">WP REST API</a> and it has the potential to make WordPress be the backend for non-WordPress  coding projects.</p>
+
+<p>For <a href="http://zack.pizza">zack.pizza</a> I can <a href="https://wordpress.org/plugins/custom-post-type-ui/">make a new post type</a> of Pizza, give it any fields I want and add more as needed, then make a small project to call that data and push it to GitHub Pages. I&rsquo;m enjoying using WordPress as the database because it makes use of some of my favorite things about WordPress,</p>
+
+<ul>
+<li>Open source</li>
+<li>I own my own data (I could hook up to the Foursquare API but then they own my checkins not me)</li>
+<li>It leverages the WordPress admin dashboard to manage the data. This point is probably the most important since WordPress has a mature editor with a focus on content managment.</li>
+</ul>
+
+
+<p>Setting up a database for a new coding project is always annoying and slows down getting to the fun part of using the data to create the app/bot/site. With WordPress and a couple plugins like <a href="https://wordpress.org/plugins/custom-post-type-ui/">Custom Post Types UI</a> to create the pizza post type and <a href="https://wordpress.org/plugins/advanced-custom-fields/">Advanced Custom Fields</a> it&rsquo;s quick and easy to make the new data type and then add, edit, delete, and rename fields. If the project expands and needs something more robust than WordPress, I know exactly how the data should be modeled when making a stand alone solution. That ability to easily experiment and change the data is also really important when setting a project up.</p>
+
+<p><img src="/images/earworm_screenshot.png" alt="Earworm screenhot" /></p>
+
+<p>I already added another post type to simply list the songs that get stuck in my head. If I start singing some tune to myself I make a new post in &lsquo;Earworm&rsquo;, add the name and a link in the &lsquo;YouTube&rsquo; field. I don&rsquo;t know exactly how I&rsquo;ll use the data yet. Maybe a module on my blog, graph it by genre, add a field for lyrics, or link to the genuis music API. But now that the data is there in a form I can see and not just in a data store I&rsquo;ll rarely look at, it&rsquo;s making me ancy to get to work and do something with it.</p>
+]]></content>
+  </entry>
+  
+</feed>

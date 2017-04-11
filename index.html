@@ -9,7 +9,7 @@
   <meta name="author" content="Zack Sheppard">
 
   
-  <meta name="description" content="I&rsquo;m going to make some changes to a child theme of the WordPress Twenty Sixteen theme. It&rsquo;s currently one of my favorite starting points &hellip;">
+  <meta name="description" content="I&rsquo;m just starting to experiment with the WP REST API and it has the potential to make WordPress be the backend for non-WordPress coding &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a></h1>
+      <h1 class="entry-title"><a href="/blog/2017/04/10/fun-with-the-wordpress-rest-api/">Fun With the WordPress REST API</a></h1>
     
     
       <p class="meta">
@@ -87,7 +87,58 @@
   
 
 
-<time datetime="2017-04-07T17:15:40-04:00" pubdate data-updated="true">Apr 7<sup>th</sup>, 2017</time>
+<time datetime="2017-04-10T15:08:56-04:00" pubdate data-updated="true">Apr 10<sup>th</sup>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m just starting to experiment with the <a href="http://v2.wp-api.org/">WP REST API</a> and it has the potential to make WordPress be the backend for non-WordPress  coding projects.</p>
+
+<p>For <a href="http://zack.pizza">zack.pizza</a> I can <a href="https://wordpress.org/plugins/custom-post-type-ui/">make a new post type</a> of Pizza, give it any fields I want and add more as needed, then make a small project to call that data and push it to GitHub Pages. I&rsquo;m enjoying using WordPress as the database because it makes use of some of my favorite things about WordPress,</p>
+
+<ul>
+<li>Open source</li>
+<li>I own my own data (I could hook up to the Foursquare API but then they own my checkins not me)</li>
+<li>It leverages the WordPress admin dashboard to manage the data. This point is probably the most important since WordPress has a mature editor with a focus on content managment.</li>
+</ul>
+
+
+<p>Setting up a database for a new coding project is always annoying and slows down getting to the fun part of using the data to create the app/bot/site. With WordPress and a couple plugins like <a href="https://wordpress.org/plugins/custom-post-type-ui/">Custom Post Types UI</a> to create the pizza post type and <a href="https://wordpress.org/plugins/advanced-custom-fields/">Advanced Custom Fields</a> it&rsquo;s quick and easy to make the new data type and then add, edit, delete, and rename fields. If the project expands and needs something more robust than WordPress, I know exactly how the data should be modeled when making a stand alone solution. That ability to easily experiment and change the data is also really important when setting a project up.</p>
+
+<p><img src="/images/earworm_screenshot.png" alt="Earworm screenhot" /></p>
+
+<p>I already added another post type to simply list the songs that get stuck in my head. If I start singing some tune to myself I make a new post in &lsquo;Earworm&rsquo;, add the name and a link in the &lsquo;YouTube&rsquo; field. I don&rsquo;t know exactly how I&rsquo;ll use the data yet. Maybe a module on my blog, graph it by genre, add a field for lyrics, or link to the genuis music API. But now that the data is there in a form I can see and not just in a data store I&rsquo;ll rarely look at, it&rsquo;s making me ancy to get to work and do something with it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/03/28/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-03-28T17:15:40-04:00" pubdate data-updated="true">Mar 28<sup>th</sup>, 2017</time>
         
       </p>
     
@@ -96,7 +147,7 @@
 
   <div class="entry-content"><p>I&rsquo;m going to make some changes to a child theme of the WordPress <a href="https://theme.wordpress.com/themes/twentysixteen/">Twenty Sixteen theme</a>. It&rsquo;s currently one of my favorite starting points when theming in WordPress. It is simple but not plain, the border and strong headlines have a good modern look, and it doesn&rsquo;t look like everyting else right now so it won&rsquo;t go out of style in a couple years.</p>
 
-<p>Making changes or additions to a WordPress theme is often difficult because there is a lot going on that I don&rsquo;t understand as far as how the elements work together to create the layout. I&rsquo;m going to do what I should probably have been doing in the past, take a couple hours to really understand all the elements, what they are doing and how they work together so working with the theme is less of a fight.</p>
+<p>Making changes or additions to a WordPress theme is often difficult because there is a lot going on with how the elements work together to create the layout. I&rsquo;m going to do what I should probably have been doing in the past, take a couple hours to really understand all the elements, what they are doing and how they work together so working with the theme is less of a fight.</p>
 
 <p>This post is a bit of an experiment. I&rsquo;ll list out divs that you&rsquo;ll come across when inspecting the page and explain how they affect layout. This mimicks the process I went through when figuring out how the theme works.</p>
 
@@ -1225,79 +1276,6 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/17/notes-on-my-beginner-dev-environment/">Notes on My Beginner Dev Environment</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-17T21:08:15-04:00" pubdate data-updated="true">Jun 17<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This post is a quick list of some of the things I&rsquo;m doing to help me code and learn during my time at <a href="http://flatironschool.com/">The Flatiron School</a>. Shoutout to <a href="https://twitter.com/waferbaby">Dan Bogan</a> who runs <a href="http://usesthis.com/">The Setup</a>. I got the idea for the post from reading his site for years.</p>
-
-<h3>.bash_profile</h3>
-
-<p>I&rsquo;ve used Terminal quite a bit over the last few years, at times even to manipulate servers at companies I worked at. But I&rsquo;ve never felt very at home there both because it was unfamiliar and because it&rsquo;s confusing to know what was going on if you don&rsquo;t use it frequently.</p>
-
-<p>I made some cosmetic changes to a make it feel more like mine and make it a place I&rsquo;m excited about hanging out in all day. I also made some functional changes that I think are better suited for someone that is just getting started programming. When first starting out learning to code there are so many little things you can get wrong. I wanted to minimize the possibility that it&rsquo;s not working because I&rsquo;m in the wrong folder or some other small thing about the parts around my code so I could focus on the code itself. The things I changed about the prompt (so far) are:</p>
-
-<ul>
-<li>I modified the command line into a 3 line format to have a single line across the top so I can easily find my place for those times when 12 screens of text go swooping by and you want to find where it started. This is small but again I think these small things that make you feel less lost are helpful when you&rsquo;re eyes aren&rsquo;t used to scanning all that text.</li>
-<li>Print out the full path so I always know where I&rsquo;m at in the file system. This was important for me especially while I&rsquo;m getting used to the command line because I didn&rsquo;t have the skill to just keep where I am in the file system in my head. It&rsquo;s getting easier already though and I might not need this much longer.</li>
-<li>Because the directory can get long I have the prompt on it&rsquo;s own line which is actually really nice and clean. It&rsquo;s also great for copy/pasting commands.</li>
-<li>In addition to showing the git branch I also made it so the branch name is red if it&rsquo;s dirty and green if it&rsquo;s clean to remind me to commit often. (link to )
-<img src="https://farm6.staticflickr.com/5497/14261841518_9ba0b709cf_b.jpg" alt="git-color" /></li>
-<li>After a couple weeks I added a calm emoji bear on that hangs out on the right. It&rsquo;s a small thing but I think these small things that are a little fun to make this new environment are really great and helpful to make the termainal more cozy. If you&rsquo;re a 7th level blackbelt DB admin you might only need <code>$</code> but I am happy to have my cozy little prompt.</li>
-</ul>
-
-
-<h4>I also made these other small changes to .bash_profile</h4>
-
-<ul>
-<li>A few aliases to directories I use a lot like <code>flat3</code> (for my flatiron/week3 directory), <code>flat4</code>, etc.
-<img src="https://farm4.staticflickr.com/3894/14261960917_49d414b698_b.jpg" alt="flat3" /></li>
-<li>A <a href="http://brettterpstra.com/2014/05/10/bash-and-dash/">function</a> to pull up documentation via <a href="http://kapeli.com/dash">dash</a> from the command line (Which I finally bought, it was totally worth it.)</li>
-</ul>
-
-
-<p>Lastly I increased the font to 16pt and installed the excellent <a href="http://ethanschoonover.com/solarized">Solarized</a> color scheme on Terminal and Sublime Text. The colors are cozy, I can look at them all day, and because there is less contrast between the colors they reduce eye strain.</p>
-
-<h3>Notes</h3>
-
-<p>Evernote is my go to for notes of all kinds. I can make notes and they are available wherever I go including on my commute. If you use it with the Chrome clipper extension you can clip entire pages (like the method documentation, hint hint!) and read them anywhere. I use 2 folders &ldquo;Flatiron Notes&rdquo; &amp; &ldquo;Flatiron Reading&rdquo;</p>
-
-<p>Evernote isn&rsquo;t great for code though so I&rsquo;m also experimenting with adding a lessons_learned.md to my assignments. I&rsquo;ve been trying to do a recap instead of just going on to the next thing so for the last couple assignments after I save and push to git I rewind the changes with Cmd+Z, then go forward through them using Shift+Cmd+Z. At each point where i remember making a break through i copy that, and make a note about what i was thinking and what i learned. This isn&rsquo;t optimal, if you change somethig you can no longer Shift+Cmd+Z forward and have to restore from master. I might start adding the file to my .gitignore since I get all deep sometimes and it might be weird to let people see me talk to myself.</p>
-
-<h3>Email</h3>
-
-<p>Lastly becuase the deluge of Github emails is overwhelming when you first start using it I have a few filters that put some things in the Inbox and some right in a Github folder. I&rsquo;m not sure all of them are really exactly right yet but the one that saves the most Inbox space is, if it says &ldquo;[GitHub] Subscribed to&rdquo; in the subject line it goes right to the Github folder.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1313,7 +1291,11 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2017/04/07/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
+        <a href="/blog/2017/04/10/fun-with-the-wordpress-rest-api/">Fun With the WordPress REST API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/03/28/layout-in-the-wordpress-twenty-sixteen-theme/">Layout in the WordPress Twenty Sixteen Theme</a>
       </li>
     
       <li class="post">
@@ -1326,10 +1308,6 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
     
       <li class="post">
         <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/10/17/removing-leading-and-trailing-spaces-and-and-nbsp-in-ruby/">Removing Leading and Trailing Spaces and &amp;nbsp in Ruby</a>
       </li>
     
   </ul>
