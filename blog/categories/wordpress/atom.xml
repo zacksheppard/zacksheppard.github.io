@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Wordpress | io.zack.io]]></title>
   <link href="http://io.zack.io/blog/categories/wordpress/atom.xml" rel="self"/>
   <link href="http://io.zack.io/"/>
-  <updated>2017-04-11T17:03:53-04:00</updated>
+  <updated>2017-04-12T11:07:17-04:00</updated>
   <id>http://io.zack.io/</id>
   <author>
     <name><![CDATA[Zack Sheppard]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Fun With the WordPress REST API]]></title>
-    <link href="http://io.zack.io/blog/2017/04/10/fun-with-the-wordpress-rest-api/"/>
+    <title type="html"><![CDATA[WordPress as a Backend Data Store Using the WP REST API]]></title>
+    <link href="http://io.zack.io/blog/2017/04/10/wordpress-data-store-with-the-rest-api/"/>
     <updated>2017-04-10T15:08:56-04:00</updated>
-    <id>http://io.zack.io/blog/2017/04/10/fun-with-the-wordpress-rest-api</id>
-    <content type="html"><![CDATA[<p>I&rsquo;m just starting to experiment with the <a href="http://v2.wp-api.org/">WP REST API</a> and it has the potential to make WordPress be the backend for non-WordPress  coding projects.</p>
+    <id>http://io.zack.io/blog/2017/04/10/wordpress-data-store-with-the-rest-api</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m just starting to experiment with the <a href="http://v2.wp-api.org/">WP REST API</a> and it has the potential to make WordPress be the backend for my non-WordPress coding projects.</p>
 
 <p>For <a href="http://zack.pizza">zack.pizza</a> I can <a href="https://wordpress.org/plugins/custom-post-type-ui/">make a new post type</a> of Pizza, give it any fields I want and add more as needed, then make a small project to call that data and push it to GitHub Pages. I&rsquo;m enjoying using WordPress as the database because it makes use of some of my favorite things about WordPress,</p>
 
