@@ -4,7 +4,7 @@
   <title><![CDATA[io.zack.io]]></title>
   <link href="http://io.zack.io/atom.xml" rel="self"/>
   <link href="http://io.zack.io/"/>
-  <updated>2017-04-12T11:07:17-04:00</updated>
+  <updated>2017-04-12T12:43:24-04:00</updated>
   <id>http://io.zack.io/</id>
   <author>
     <name><![CDATA[Zack Sheppard]]></name>
@@ -148,6 +148,62 @@ Margins are controlled by percentage in this theme. <code>.site-content</code> i
 
 
 <p>After doing this explication of the layout, creating the testimonials shortcode was much easier than other changes I&rsquo;ve made. It&rsquo;s epecially handy since this particular theme has things lining up in weird ways so it&rsquo;s hard to tell how they work together. The above notes will also be useful for my next changes.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Spend Less Time Searching the WordPress Dashboard Menu]]></title>
+    <link href="http://io.zack.io/blog/2017/02/12/spend-less-time-searching-the-wordpress-dashboard-menu/"/>
+    <updated>2017-02-12T10:21:21-05:00</updated>
+    <id>http://io.zack.io/blog/2017/02/12/spend-less-time-searching-the-wordpress-dashboard-menu</id>
+    <content type="html"><![CDATA[<p>&ldquo;Where is that button?&rdquo;</p>
+
+<p>That is what I most often think when looking at the WordPress dashboard menu and an experience I want to minimize for clients I&rsquo;m handing a site off to. Because of that I usually make a few changes so it will be more natural for them to scan and find what they need.</p>
+
+<h3>Main menu order</h3>
+
+<p>The default menu has a lot of items and the order isn&rsquo;t obvious to someone new to WordPress, especially if you start adding custom post types.</p>
+
+<p>I think of the menu items as separated into 4 different categories and place them into these categories and put a seperator between each group.</p>
+
+<ul>
+<li>Admin home &ndash; Dashboard</li>
+<li>Edit content &ndash; Post types &amp; pages. &lsquo;Posts&rsquo; I rename to the more specific &lsquo;Blog Posts&rsquo;</li>
+<li>Community &ndash; Areas where you will interact with site visitors. Contact form, email contacts, etc.</li>
+<li>Settings &ndash; This includes appearance and tools</li>
+<li>Plugins &ndash; Plugins are big offenders of making the admin menu more confusing. There isn&rsquo;t any consistency to where they get added. They might show up before, after, or in Settings; so putting them together is helpful.</li>
+</ul>
+
+
+<p>Making the changes: There are two different ways you can move items around in the menu, <a href="https://code.tutsplus.com/articles/customizing-the-wordpress-admin-adding-styling--wp-33530">code them directly</a> or use the excellent <a href="https://wordpress.org/plugins/admin-menu-editor/">Admin Menu Editor plugin</a>.</p>
+
+<h3>Separator Styling</h3>
+
+<p>Now that we have the menu items grouped into a logical order we need to make it more visually obvious they are in a group. The default separator styling just makes a slightly larger vertical space with no color difference. It&rsquo;s so minimal new users can be forgiven for not noticing it.</p>
+
+<p>I like to simply make it a grey background just like the main dashboard background color. This one change makes it much more obvious there is a seperator.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>#adminmenu li.wp-menu-separator {
+</span><span class='line'>background-color: #f1f1f1;
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Limit access by role</h3>
+
+<p>Authors and Editors see a lot of menu items they don&rsquo;t really need. An easy way to make the menu easier to sift through is just to remove items that an Author or Editor won&rsquo;t need. Ones I remove are:</p>
+
+<ul>
+<li>Appearance</li>
+<li>Tools (I actually remove this for everyone)</li>
+<li>Plugins</li>
+<li>Any installed plugin that an Author or Editor doesn&rsquo;t need</li>
+</ul>
+
+
+<p>With these minimal changes you can make it easier for users to find what they need and shorten the onboarding time for new users.</p>
 ]]></content>
   </entry>
   

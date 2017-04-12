@@ -9,7 +9,7 @@
   <meta name="author" content="Zack Sheppard">
 
   
-  <meta name="description" content="This post is a quick list of some of the things I&rsquo;m doing to help me code and learn during my time at The Flatiron School. Shoutout to Dan &hellip;">
+  <meta name="description" content="I&rsquo;ve tried to figure out why many of the engineers I know still use IRC even though it&rsquo;s such old technology. I&rsquo;ve tried it but don &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,168 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/21/getting-familiar-with-irc/">Getting Familiar With IRC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-21T09:24:49-04:00" pubdate data-updated="true">Jul 21<sup>st</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve tried to figure out why many of the engineers I know still use IRC even though it&rsquo;s such old technology. I&rsquo;ve tried it but don&rsquo;t totally understand it. Since I&rsquo;m learning to code, it&rsquo;s time to also learn IRC.</p>
+
+<p>IRC stands for Internet Relay Chat. You can read the <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">Wikipedia definition</a>, but that really doesn&rsquo;t tell you much about why or how people use it in world that also has IM clients, Twitter, SMS, iMessage, and all the other ways that we have today to connect. Honestly I don&rsquo;t totally know why either but it&rsquo;s time to dive in and find out! I asked on Twitter if it&rsquo;s still something people find useful,</p>
+
+<p><a href="https://twitter.com/zackshp/status/490915646339702785" ><img src="https://farm4.staticflickr.com/3901/14705008201_0677b4e770_o.jpg" width="571" height="259" alt="Screen_Shot_2014-07-21_at_8_48_27_AM"></a></p>
+
+<p>and the general consensus seems to be <a href="https://twitter.com/zackshp/status/490915646339702785">yes</a>.</p>
+
+<p>Since I&rsquo;m learning Ruby, the example channel I&rsquo;ll join is the <code>#ruby-lang</code> room on freenode.net. Here&rsquo;s the address:
+<code>irc://irc.freenode.net/ruby-lang</code></p>
+
+<p>But how do I actually use that? And after I&rsquo;m in there what is ok, and what is verboten?</p>
+
+<h3>Reading the address</h3>
+
+<ul>
+<li><code>irc://</code> denotes that it&rsquo;s an IRC connection as opposed to the http that you see when getting a web page.</li>
+<li><code>irc.freenode.net</code> is the server, as you&rsquo;d guess.</li>
+<li><code>ruby-lang</code> is the specific room or &lsquo;channel&rsquo; that you are joining as it&rsquo;s called in IRC.</li>
+</ul>
+
+
+<h3>IRC Clients</h3>
+
+<p>There are lots of options. Dedicated clients like <a href="http://colloquy.info/">Colloquy</a> and <a href="http://limechat.net/">Limechat</a>, <a href="http://www.irssi.org/">irssi</a> on the command line, and it&rsquo;s also possible to use IRC inside of other chat clients like <a href="https://adium.im/">Adium</a>. For even more simplicity there are browser extensions for Chrome and Firefox that will let you IRC in your browser. irssi is good but it can be hard to install. If you just want to get up and running Adium is a good choice because you can also use it with so many other chat services.</p>
+
+<h3>Joining a room</h3>
+
+<p>For this example we&rsquo;ll join the <code>##new2ruby</code> channel that is good and active as of this writing.<br/>
+(After you&rsquo;ve logged in use the &ldquo;Registering on the IRC server&rdquo; instructions below to create a permanent account on the server.)</p>
+
+<h4>On Adium</h4>
+
+<ol>
+<li>Download <a href="https://adium.im/">Adium</a> if you don&rsquo;t already have it</li>
+<li>File > Add Account > IRC</li>
+<li>Nickname: Enter your name on the server</li>
+<li>Hostname: irc.freenode.net</li>
+<li>Click &lsquo;Options&rsquo;</li>
+<li>Here you will enter any rooms you want to join automatically
+<code>/join ##new2ruby</code></li>
+<li>Ok</li>
+</ol>
+
+
+<h4>On Colloquy</h4>
+
+<ol>
+<li>After opening Colloquy click &lsquo;Connect&rsquo;</li>
+<li>Enter irc.freenode.net as the Chat Server and Connect</li>
+<li>Before joining the ##new2ruby room we might as well look around to see what else is happening on the server. Click the down arrow to see a list of all the rooms. After you&rsquo;re connected click &lsquo;Join Room&rsquo;.  I&rsquo;m going to join a couple rooms to see how conversations work.</li>
+</ol>
+
+
+<p>That&rsquo;s it! You can see what people are talking about and participate as well. Rooms often have a code of conduct or set of rules that you will see open entering the channel or in the topic at the top of the room. It&rsquo;s always a good idea to read these to understand the comunity that you are participating in.</p>
+
+<p>Next up, what are the commands.</p>
+
+<h3>Commands</h3>
+
+<p>This is the part I&rsquo;ve always been confused about. You enter IRC commands in the same place that you post messages except that instead of just entering &ldquo;Hi there&rdquo; you begin the line with a slash and type the command with it&rsquo;s arguments. Beginning the message with a slash indicates that it is a command and it will not be sent to the room. If it is a <code>/msg</code> command it will be sent to the person you&rsquo;re messaging. Common commands are:</p>
+
+<ul>
+<li><code>/help</code> will usually give you a list of command options</li>
+<li><code>/msg &lt;nick&gt; (message)</code> to start a private chat with someone in the room. Ex. &lsquo;/msg barry345 Hi Barry how&rsquo;s Lavon?&rsquo;</li>
+<li><code>/ignore &lt;nick&gt;</code> &ndash; ignore the person with that nick in all rooms on the server. They will not be able to /msg you.</li>
+<li><code>/whois &lt;nick&gt;</code> Opens an info window for nick.</li>
+<li><code>/away</code> lets you set your status to away.</li>
+<li><code>/topic</code> Channels will often have a message at the top of the room called the topic. This command lets you reset that.</li>
+</ul>
+
+
+<h3>Registering on the IRC server</h3>
+
+<p>You don&rsquo;t have to register with a password on most IRC servers. If you don&rsquo;t you can just login with a nickname temporarily. But to be a part of the community I think you need a regular account that is yours and which people can recognise you by so it&rsquo;s time to register.</p>
+
+<p>One of the things that always seemed weird to me about IRC is that to register, change my password or anything about my account I have to enter my password in the same place I send messages to the group. So I wanted to make sure I know what I&rsquo;m doing before I accidentally send my password to 300+ people. To prevent the possibility of this we&rsquo;ll open up a chat with the NickServ bot that manages accounts first. This way even if something does go wrong it won&rsquo;t be sent to everyone. In the message input enter,</p>
+
+<ol>
+<li><code>/msg NickServ</code> This should open a private chat with the bot.</li>
+<li>In the private chat enter <code>/msg NickServ REGISTER password me@me.com</code> where password and email are your password and email.</li>
+</ol>
+
+
+<p><img src="https://farm4.staticflickr.com/3843/14708041015_32a686c1eb_o.jpg" alt="NicServ msg" /></p>
+
+<p>This is messaging the Nickname Server bot directly, telling it that you want to REGISTER using the password and email provided.  After registering you can also enter the command <code>/msg NickServ SET ENFORCE ON</code> to make sure no one can use your nick unless they login.</p>
+
+<h3>Starting a channel on the Freenode IRC server</h3>
+
+<p>Since this is a way to chat with people. Having a list of commands is nice it&rsquo;s just not the same as actually using it. If you&rsquo;d like to try setting up your own room to try it with a few friends on Freenode. Freenode is mainly a network for people involved in open source software but there are also some random rooms.  To get started, open a message session with the ChanServ bot by typing <code>/msg ChanServ</code> Now that you&rsquo;re messaging the bot directly follow <a href="https://botbot.me/how-to-setup-irc-channel/">these instructions from BotBot.me</a>. The BotBot instructions are about how to setup an invite only room which requires people to register. Really I&rsquo;d like people to be able to try it with me with a low barrier to entry so I&rsquo;m going to skip that step. I created the channel and set it up using these commands:</p>
+
+<ol>
+<li><code>/join ##your-room-name</code></li>
+<li><code>/msg ChanServ REGISTER ##your-room-name</code></li>
+<li><code>/msg ChanServ SET ##your-room-name GUARD ON</code></li>
+<li><code>/msg Chanserv SET ##your-room-name MLOCK +s</code></li>
+</ol>
+
+
+<p>And now you&rsquo;re setup!</p>
+
+<p>If you want the channel password protected you can optinally also send the command <code>/msg ChanServ set ##your-room-name mlock +k password</code>
+<img src="https://farm6.staticflickr.com/5579/14521361100_bd4a4c795f_b.jpg" alt="channel setup" /></p>
+
+<p>Now that the room is setup you can invite people to it by giving them the address: <code>irc://irc.freenode.net/your-room-name</code> Try changing the topic, /msg, /query, maybe even /ignore to see what it looks like, and lots of other fun.</p>
+
+<p>To make the barrier to entry as low as possible, someone can even try it with just an IRC Chrome or Firefox extension. A friend could join in 3 steps by</p>
+
+<ol>
+<li>Installing <a href="https://chrome.google.com/webstore/detail/circ/bebigdkelppomhhjaaianniiifjbgocn?hl=en-US&amp;_ind=category%252Fapps%253Fhl%253Den-US&amp;_asi=1&amp;source=5">CIRC</a> in Chrome.</li>
+<li>After opening the extension connect to freenod with this command, <code>/server irc.freenode.net</code></li>
+<li>Then join the room with the password by entering: <code>/join ##your-room-name password</code></li>
+</ol>
+
+
+<h4>Even easier channel setup</h4>
+
+<p>There are a few companies out there that basically let you embed an IRC chatroom in a webpage. <a href="https://kiwiirc.com/">Kiwiirc</a> is one of them that will let you do this for free. From their embed page you can get a link that will open IRC in the browser, or even get embed code to let you just embed an IRC chatroom on your own site. They have an interesting note about using it with projects &ldquo;<em>You can now link your GitHub project to your own IRC channel (or create one on freenode!) by embedding a button within your readme.md file. This can be generated using the form to the right and selecting the GitHub logo.</em>&rdquo;</p>
+
+<h3>Speaking of bots</h3>
+
+<p>If you start playing with it, one of the really fun and powerful things about IRC is the abity to have bots that report on things or reply to comments automatically. People have been writing IRC bots for years so there are lots to choose from that do everything from report site errors to post gifs.</p>
+
+<p>If you want to try building a IRC bot there is a Ruby framework called <a href="http://www.rubyinside.com/cinch-a-ruby-irc-bot-building-framework-3223.html">Cinch</a> that I&rsquo;ll be trying in the near future.</p>
+
+<p>There are a lot of modern alternatives to IRC that are less querky and easier to understand (<a href="http://slack.com">Slack!</a>)  but it&rsquo;s still a technology worth having some familiarity with.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -198,15 +360,15 @@
       </li>
     
       <li class="post">
+        <a href="/blog/2017/02/12/spend-less-time-searching-the-wordpress-dashboard-menu/">Spend Less Time Searching the WordPress Dashboard Menu</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/06/18/setting-up-local-development-on-a-wordpress-blog-at-dreamhost/">Setting Up Local Development on a WordPress Blog at Dreamhost</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/06/07/saving-user-data-in-the-hubot-redis-brain/">Saving User Data in the Hubot Redis Brain</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/05/26/thoughts-on-the-cooper-hewitt-pen-1-week-later/">Thoughts on the Cooper Hewitt Pen:1 Week Later</a>
       </li>
     
   </ul>
